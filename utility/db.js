@@ -2,10 +2,10 @@
 const mysql = require(`mysql-await`);
 const { ValidationError } = require("./errorHandler");
 const string = {
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "pensieve",
+  host: "sql311.epizy.com",
+  user: "epiz_32955902",
+  password: "ldbl1xkHgLvVCi4",
+  database: "epiz_32955902_login",
   throwErrors: false,
 };
 
