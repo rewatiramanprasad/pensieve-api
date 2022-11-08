@@ -2,7 +2,12 @@ const { query } = require("../utility/db");
 
 const {response} = require("../utility/response");
 const {getAll,getDetails}=require('./sqlController');
-
+const hello=async()=>{
+    res
+    .status(200)
+    .send(response(true,"hello world",[]))
+    .end();
+}
 const detailController=async(req,res,next)=>{
     try {
     const deviceId=req.query.deviceId;
@@ -45,4 +50,4 @@ try {
   
 }
 
-module.exports={detailController,summaryController}
+module.exports={detailController,summaryController,hello}
