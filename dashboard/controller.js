@@ -3,9 +3,10 @@ const { query } = require("../utility/db");
 const {response} = require("../utility/response");
 const {getAll,getDetails}=require('./sqlController');
 const hello=async(req,res)=>{
-   return res
+    res
     .status(200)
-    .json(response(true,"hello world",[]))
+    .send(response(true,"hello world",[]))
+    .end();
     
 }
 const detailController=async(req,res,next)=>{
