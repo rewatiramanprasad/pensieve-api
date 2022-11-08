@@ -3,7 +3,7 @@ const { query } = require("../utility/db");
 const {response} = require("../utility/response");
 const {getAll,getDetails}=require('./sqlController');
 const hello=async(res,req)=>{
-    res
+   return res
     .status(200)
     .send(response(true,"hello world",[]))
     .end();
