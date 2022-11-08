@@ -2,7 +2,7 @@ const { query } = require("../utility/db");
 
 const {response} = require("../utility/response");
 const {getAll,getDetails}=require('./sqlController');
-const hello=async(req,res)=>{
+const hello=async(req,res,next)=>{
     try {
         res
     .status(200)
