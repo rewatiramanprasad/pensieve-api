@@ -1,4 +1,4 @@
-const data=require('./config/config.json');
+//const data=require('./config/config.json');
 const userRouter=require('./user/router');
 const dashRouter=require('./dashboard/router');
 const express=require('express');
@@ -24,6 +24,6 @@ app.use(error);
 
 
 
-app.listen(process.env.PORT||data['port'],()=>{
-    console.log(`server is runing at ${process.env.Port||data['port']}`);
+app.listen(process.env.PORT,()=>{
+    console.log(`server is runing at ${process.env.Port}`);
 });
