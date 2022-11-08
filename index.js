@@ -25,5 +25,5 @@ app.use(error);
 
 
 app.listen(process.env.PORT,()=>{
-    console.log(`server is runing at ${process.env.Port}`);
+    console.log(`server is runing at ${process.env.PORT}`);
 });
