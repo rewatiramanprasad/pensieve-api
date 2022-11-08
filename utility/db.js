@@ -1,11 +1,11 @@
-const data = require("../config/config.json");
+//const data = require("../config/config.json");
 const mysql = require(`mysql-await`);
 const { ValidationError } = require("./errorHandler");
 const string = {
-  host: data["host"],
-  user: data["user"],
-  password: data["password"],
-  database: data["db"],
+  host: "localhost",
+  user: "root",
+  password: "root",
+  database: "pensieve",
   throwErrors: false,
 };
 
