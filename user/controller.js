@@ -3,7 +3,15 @@ const crypto=require('crypto-js');
 const {response} = require('../utility/response');
 const {newUser,checkUser}=require('./sqlController');
 const { ValidationError } = require('../utility/errorHandler');
-
+const { exist } = require('joi');
+const userExist=async(username)=>{
+const sql="select * from login where username=$1 "
+const result=await queryWithPara(sql,[username]);
+if(result.rows.length>=1){
+    return true
+}
+return false;
+}
 const signupController=async(req,res,next)=>{
     try {
     let user=req.body.email;
@@ -11,12 +19,15 @@ const signupController=async(req,res,next)=>{
     //console.log(req);
     console.log(user,password);
     let decPassword=crypto.MD5(password);
+    
+    if(await userExist(username)){
+        res.status(200).send(response(true,"user already exist",[])).end();
+    }
     let result=await newUser(user,decPassword,next);
     console.log(decPassword+"");
     console.log(result)
-    if(typeof result!='undefined'){
-        res.status(200).send(response(true,"user created successful",[])).end();
-    }
+    res.status(200).send(response(true,"user created successfully",[])).end();
+
     
         } catch (e) {
            next(e)
