@@ -19,19 +19,21 @@ const getAll=async(next)=>{
     let mainQuery=`select * from summary where (DeviceId,Timestamp)in (select DeviceId ,max(Timestamp) from summary group by DeviceId)`
     console.log(mainQuery);
     let result=await query(mainQuery);
+    console.log(result)
     return result;
 
 };
 
 const getDetails=async(deviceId,deviceType)=>{
     let result={};
+    
     let strQuery1=`select * from summary where DeviceId='${deviceId}'and DeviceType='${deviceType}'`
     const data=await query(strQuery1);
     console.log(data);
     let strQuery2=`SELECT COUNT(Timestamp)*5 AS totaltime,
                     COUNT(Timestamp) AS totalcount,
                     LOCATION,
-                    ROUND((COUNT(Timestamp)*100)/SUM(COUNT(Timestamp)) OVER(),0) as 'percentage'
+                    ROUND((COUNT(Timestamp)*100)/SUM(COUNT(Timestamp)) OVER(),0) AS percentage
                     FROM summary 
                     WHERE DeviceId='${deviceId}' AND DeviceType='${deviceType}' 
                     GROUP BY location`;
@@ -39,7 +41,8 @@ const getDetails=async(deviceId,deviceType)=>{
     console.log(pieData);
     result.table=data;
     result.pieChart=pieData;
-    return result;
+    console.log(result);
+    return [result];
 
 };
 module.exports={getAll,getDetails};

@@ -11,11 +11,11 @@
 // };
 const {Client}=require('pg');
 const connectionString='postgres://postgres:QnMoiQdVF0IuvkUb@db.rdbnvztwdvbhvwdqxpwj.supabase.co:6543/postgres'||process.env.dbstring;
-const client=new Client({connectionString})
 
 const query = async (str) => {
 try{
 // const connection=mysql.createConnection(string);
+const client=new Client({connectionString})
 
   client.connect();
   let result = await client.query(`${str}`);
@@ -49,7 +49,9 @@ try {
   //   connection.release();
 
   // return result;
-  client.connect();
+  const client=new Client({connectionString})
+
+  await client.connect();
   let result = await client.query(`${str}`,arr);
   await client.end();
   return result.rows;

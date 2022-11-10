@@ -7,27 +7,29 @@ const { exist } = require('joi');
 const userExist=async(username)=>{
 const sql="select * from login where username=$1 "
 const result=await queryWithPara(sql,[username]);
-if(result.rows.length>=1){
+console.log(result);
+if(result.length>=1){
     return true
 }
 return false;
 }
 const signupController=async(req,res,next)=>{
     try {
-    let user=req.body.email;
+    let username=req.body.email;
     let password=req.body.password;
     //console.log(req);
-    console.log(user,password);
+    console.log(username,password);
     let decPassword=crypto.MD5(password);
     
     if(await userExist(username)){
-        res.status(200).send(response(true,"user already exist",[])).end();
-    }
-    let result=await newUser(user,decPassword,next);
+         res.status(200).send(response([],false,"user already exist")).end();
+       // next(new ValidationError("User already exist"))   
+     }else{
+    let result=await newUser(username,decPassword,next);
     console.log(decPassword+"");
     console.log(result)
-    res.status(200).send(response(true,"user created successfully",[])).end();
-
+    res.status(200).send(response([],true,"user created successfully")).end();
+     }
     
         } catch (e) {
            next(e)
@@ -36,9 +38,9 @@ const signupController=async(req,res,next)=>{
 
 const loginController=async(req,res,next)=>{
     try {
-        let user=req.body.email;
+        let username=req.body.email;
     let password=req.body.password;
-    let userCheck=await checkUser(user ,next);
+    let userCheck=await checkUser(username ,next);
     console.log(userCheck);
     let result;
     let status=400;
@@ -59,7 +61,7 @@ const loginController=async(req,res,next)=>{
     let passwordMd5=crypto.MD5(password)+"";
         console.log(passwordMd5,userCheck[0].password);
         if(passwordMd5===userCheck[0].password){
-           res.status(200).send(response(true,"user login successfull")).end();
+           res.status(200).send(response([],true,"user login successfull")).end();
         }else {
          next(new ValidationError("wrong combination of user and password"))
         }

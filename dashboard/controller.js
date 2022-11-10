@@ -1,15 +1,16 @@
-const { query } = require("../utility/db");
+// const { query } = require("../utility/db");
 
 const {response} = require("../utility/response");
 const {getAll,getDetails}=require('./sqlController');
 const hello=async(req,res,next)=>{
     try {
-        res
+    res
     .status(200)
-    .send(response(true,"hello world"))
+    .send(response([],true,"hello world"))
     .end();
+
     } catch (e) {
-        next(e)
+        next(e);
     }
     
     
@@ -24,7 +25,7 @@ const detailController=async(req,res,next)=>{
     const result=await getDetails(deviceId ,deviceType);
     res
     .status(200)
-    .send(response(true,"Data fetch successfuly",result))
+    .send(response(result,true))
     .end();
         
     } catch (e) {
@@ -46,7 +47,7 @@ try {
   //result=result.slice(startIndex,endIndex);
   res
     .status(200)
-    .send(response(true, "fetching data successful", result))
+    .send(response(result,true))
     .end();
     
 } catch (e) {

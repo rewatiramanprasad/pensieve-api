@@ -15,11 +15,12 @@ const newUser=async(email,decPassword,next)=>{
         return result.rows;
   
 }
-const checkUser=async(user,next)=>{
+const checkUser=async(username,next)=>{
     let query=`select * from login where username=$1 `
-    let result=await queryWithPara(query,[user],next);
-    if(result.rows.length==1){
-        return result.rows;
+    let result=await queryWithPara(query,[username],next);
+    // console.log(result)
+    if(result.length>=1){
+        return result;
     }else{
         next(new ValidationError('wrong combination of user and password'))
         return [];

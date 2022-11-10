@@ -1,8 +1,27 @@
-const response=(success=false,message="",data=[])=>{
-    if(success==false && message.length==0){
-        message="technical error";
+function response(result, flag, message = '', user = '') {
+    let response = {
+        success: false,
+        data: [],
+        message: "failed",
+    }
+    if (flag == true) {
+        response.data = result
+        response.message = result.length + " rows fetched"
+        response.success = flag
+        if (message.length != 0) {
+            response.message = message
+        }
+        if (user.length != 0) {
+            response['user'] = user
         }
 
-    return {data,success,message};
-};
-module.exports=response;
+
+    }
+    if (message.length != 0) {
+        response.message = message
+    }
+
+    return response;
+
+}
+module.exports = { response }

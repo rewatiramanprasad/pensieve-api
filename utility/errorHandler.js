@@ -12,10 +12,10 @@ class ValidationError extends Error {
 const error = (err, req, res, next) => {
     let result ;
     if (err instanceof ValidationError) {
-        result =response( false,err.message,[]);
+        result =response([], false,err.message);
     }
     else if (err instanceof Error) {
-        result =response( false, err.message,[]);
+        result =response([], false, err.message);
 
     }
     res.status(400).send(result).end();
