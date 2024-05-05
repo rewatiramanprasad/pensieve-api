@@ -7,7 +7,7 @@ const {signupController,loginController}=require('./controller');
 const {isValidLogin,isValidSignup}=require('./validation')
 
 
-
+route.get('/',(req,res)=>{res.})
 router.post('/signup',isValidSignup,signupController);
 
 router.post('/login',isValidLogin,loginController);
