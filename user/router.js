@@ -10,6 +10,9 @@ const {isValidLogin,isValidSignup}=require('./validation')
 router.get('/', (req, res) => {
     res.send('products api running new deploy');
 });
+router.get('/ping', (req, res) => {
+    res.status(200).send('PONG').end();
+});
 router.post('/signup',isValidSignup,signupController);
 
 router.post('/login',isValidLogin,loginController);
