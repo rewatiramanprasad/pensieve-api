@@ -8,10 +8,11 @@ const {isValidLogin,isValidSignup}=require('./validation')
 
 
 router.get('/', (req, res) => {
-    res.send('products api running new deploy');
+    res.send('API is running');
 });
 router.get('/ping', (req, res) => {
-    res.status(200).send('PONG').end();
+    // res.status(200).send('PONG').end();
+    res.status(200).send(response([],true,"Pong")).end();
 });
 router.post('/signup',isValidSignup,signupController);
 
