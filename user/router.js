@@ -1,7 +1,7 @@
 const express=require('express');
 const {queryWithPara}=require('../utility/db');
 const crypto=require('crypto-js');
-const response = require('../utility/response');
+const {response} = require('../utility/response');
 const router=express.Router();
 const {signupController,loginController}=require('./controller');
 const {isValidLogin,isValidSignup}=require('./validation')

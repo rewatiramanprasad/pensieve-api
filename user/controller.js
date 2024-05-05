@@ -20,7 +20,7 @@ const signupController=async(req,res,next)=>{
     //console.log(req);
     console.log(username,password);
     let decPassword=crypto.MD5(password);
-    
+    console.log(decPassword)
     if(await userExist(username)){
          res.status(200).send(response([],false,"user already exist")).end();
        // next(new ValidationError("User already exist"))   
