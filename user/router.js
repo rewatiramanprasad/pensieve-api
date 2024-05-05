@@ -7,7 +7,9 @@ const {signupController,loginController}=require('./controller');
 const {isValidLogin,isValidSignup}=require('./validation')
 
 
-route.get('/',(req,res)=>{res.status(200).send(response([],true,"welcome to api")).end();})
+router.get('/', (req, res) => {
+    res.send('products api running new deploy');
+});
 router.post('/signup',isValidSignup,signupController);
 
 router.post('/login',isValidLogin,loginController);
