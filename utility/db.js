@@ -10,8 +10,9 @@
 //   throwErrors: false,
 // };
 const {Client}=require('pg');
-const connectionString='postgres://postgres:QnMoiQdVF0IuvkUb@db.rdbnvztwdvbhvwdqxpwj.supabase.co:6543/postgres'||process.env.dbstring;
+const connectionString='postgres://postgres.rdbnvztwdvbhvwdqxpwj:OxSu36AyUfC49StU@aws-0-us-east-1.pooler.supabase.com:5432/postgres'||process.env.dbstring;
 
+// postgres://postgres:QnMoiQdVF0IuvkUb@db.rdbnvztwdvbhvwdqxpwj.supabase.co:6543/postgres
 const query = async (str) => {
 try{
 // const connection=mysql.createConnection(string);

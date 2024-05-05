@@ -44,7 +44,7 @@ const summaryController= async (req, res,next) => {
     // const endIndex=page*limit;
 try {
     let result = await getAll() ;
-  //result=result.slice(startIndex,endIndex);
+//   result=result.slice(startIndex,endIndex);
   res
     .status(200)
     .send(response(result,true))

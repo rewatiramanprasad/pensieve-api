@@ -1,4 +1,5 @@
 const { query } = require("../utility/db");
+const { ValidationError } = require("../utility/errorHandler");
 
 const getAll=async(next)=>{
     // let generateQuery={
@@ -16,11 +17,17 @@ const getAll=async(next)=>{
         // str=str.slice(0,str.length-4);
         // str+=`order by ${rest[rest.length-1]} Asc`;
    // }
-    let mainQuery=`select * from summary where (DeviceId,Timestamp)in (select DeviceId ,max(Timestamp) from summary group by DeviceId)`
+    try {
+        let mainQuery=`select * from summary where (DeviceId,Timestamp)in (select DeviceId ,max(Timestamp) from summary group by DeviceId)`
     console.log(mainQuery);
     let result=await query(mainQuery);
     console.log(result)
     return result;
+        
+    } catch (error) {
+        console.log(error)
+        next(e)
+    }
 
 };
 
